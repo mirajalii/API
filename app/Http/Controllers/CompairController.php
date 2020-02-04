@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Model\Compair;
+use App\Models\Compair;
 
 use DB;
 
@@ -16,16 +16,16 @@ class CompairController extends Controller
     
     }
 
-    public function store(Request $request){
-
-
+    public function store(Request $request)
+    {
+        
         $compair = new Compair;
+        
+        $inputs = $request->all();
+        
+        $compair = $compair->create($inputs);
 
-        $compair = $request->all();
-
-        $compair->save();
-
-        return 'SuccessFull';
+        return $this->success($compair);
 
     }
 }
